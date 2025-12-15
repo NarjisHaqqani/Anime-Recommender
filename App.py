@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import streamlit as st
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
@@ -11,9 +5,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import MinMaxScaler
 from scipy.sparse import hstack
 
-# -------------------------------
 # LOAD AND PREPARE DATA
-# -------------------------------
+
 anime = pd.read_csv("anime.csv")
 
 # Combine text fields
@@ -34,9 +27,8 @@ numeric = scaler.fit_transform(anime[['rating','members']])
 content_matrix = hstack([tfidf_matrix, numeric])
 cosine_sim = cosine_similarity(content_matrix)
 
-# -------------------------------
 # RECOMMENDATION FUNCTION
-# -------------------------------
+
 def recommend_anime(title):
     # Case-insensitive matching
     matches = anime[anime['name'].str.lower() == title.lower()]
@@ -53,9 +45,8 @@ def recommend_anime(title):
     # Return ONLY NAMES
     return anime.iloc[anime_indices]["name"].reset_index(drop=True)
 
-# -------------------------------
 # STREAMLIT UI
-# -------------------------------
+
 st.title("Anime Recommender System")
 
 # User input
@@ -76,7 +67,6 @@ if st.button("Recommend"):
                 st.write("• " + name)
 
 
-# In[ ]:
 
 
 
