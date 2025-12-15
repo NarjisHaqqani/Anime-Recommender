@@ -8,7 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 from scipy.sparse import hstack
 
 BASE-DIR = Path.cwd()
-DATA_PATH = BASE_DIR / "anime.csv")
+DATA_PATH = BASE_DIR / "anime.csv"
 
 # LOAD AND PREPARE DATA
 
@@ -70,6 +70,7 @@ if st.button("Recommend"):
             st.subheader("Recommended Anime:")
             for name in recommendations:
                 st.write("• " + name)
+
 
 
 
