@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
@@ -5,9 +6,12 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import MinMaxScaler
 from scipy.sparse import hstack
 
+BASE-DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR,"anime.csv")
+
 # LOAD AND PREPARE DATA
 
-anime = pd.read_csv("anime.csv")
+anime = pd.read_csv(DATA_PATH)
 
 # Combine text fields
 anime['genre'] = anime['genre'].fillna("")
@@ -65,6 +69,7 @@ if st.button("Recommend"):
             st.subheader("Recommended Anime:")
             for name in recommendations:
                 st.write("• " + name)
+
 
 
 
